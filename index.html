@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EdgeScout NFL — Broadcast</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+
+:root{--navy:#071427;--panel:#0c1c38;--red:#e31837;--gold:#f2c14e;--ice:#f4f7fb;--mute:#9aabc4}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{max-width:100%;overflow-x:hidden}
+body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-serif}
+.hero{padding:1.8rem 1.6rem 0}
+.bug{max-width:980px;margin:0 auto;background:var(--panel);border:2px solid #1a335c;display:flex;overflow:hidden}
+.bug-l{background:var(--red);padding:1rem 1.4rem;display:flex;align-items:center;justify-content:center;flex:0 0 320px;width:320px}
+.bug-l img{width:260px;height:auto;display:block}
+.bug-m{flex:1;padding:1.15rem 1.4rem}
+.bug-m h1{font-family:Oswald,Impact,sans-serif;font-size:clamp(2.6rem,8vw,4.8rem);line-height:.92;text-transform:uppercase}
+.bug-m h1 span{color:var(--gold)}
+.bug-m .hook{color:var(--ice);font-size:1.12rem;margin-top:.55rem;max-width:40ch}
+.lede-pts{list-style:none;margin:.75rem 0 0;display:flex;flex-direction:column;gap:.42rem}
+.lede-pts li{display:flex;align-items:center;gap:.65rem;color:var(--ice);font-size:.98rem;line-height:1.25}
+.score{max-width:980px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);background:#09152b;width:100%}
+.sc{padding:1.1rem 1.3rem;border-left:1px solid #1a335c}
+.sc b{display:block;font-family:Oswald,sans-serif;font-size:2.1rem;color:var(--gold)}
+.sc span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.stage{max-width:980px;margin:0 auto;padding:1.2rem 1.6rem 4.5rem}
+.stakes{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 1rem}
+.stakes-l{color:var(--mute);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.stakes button{background:#081326;border:1px solid #1a335c;color:var(--ice);font:inherit;padding:.45rem .8rem;cursor:pointer}
+.stakes button.is-on{border-color:var(--gold);color:var(--gold)}
+.screen{background:#081326;border:2px solid #1a335c;padding:1rem 1.1rem .5rem;margin-bottom:1rem}
+.screen-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.5rem}
+.screen h2{font-family:Oswald,sans-serif;letter-spacing:.14em;text-transform:uppercase;font-size:14px;color:var(--gold)}
+.results-link{color:var(--gold);font-size:13px;text-decoration:none}
+.results-link:hover{text-decoration:underline}
+.chart-box{height:340px}
+.weeks{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.wk{background:var(--panel);padding:.85rem .9rem;border-left:3px solid var(--gold)}
+.wk-n{display:block;font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
+.wk-p{font-family:Oswald,sans-serif;font-size:1.3rem}
+.copy{margin-top:1.5rem;color:var(--mute);max-width:62ch;line-height:1.65}
+.copy p+p{margin-top:.7rem}
+.how,.faq,.points{margin-top:1.5rem}
+.how h2,.faq h2{font-family:Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.how ol{padding-left:1.2rem;color:var(--mute);line-height:1.7;max-width:62ch}
+.points{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.points > div{background:var(--panel);padding:1rem;display:flex;align-items:flex-start;gap:.75rem}
+.pt-ico{flex:0 0 2rem;width:2rem;height:2rem;background:var(--red);display:grid;place-items:center}
+.pt-ico img{width:1.15rem;height:1.15rem;display:block;filter:brightness(0) invert(1)}
+.points h3{font-family:Oswald,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.points p{color:var(--mute);font-size:14px}
+.faq details{border-top:1px solid #1a335c;padding:.75rem 0}
+.faq summary{cursor:pointer;font-weight:600}
+.faq details p{color:var(--mute);margin-top:.4rem}
+.prices{margin-top:1.8rem}
+.prices h2{font-family:Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.price-card{background:var(--panel);padding:1.15rem 1.1rem}
+.price-card.feat{border-top:4px solid var(--gold)}
+.pt{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.pn{font-family:Oswald,sans-serif;font-size:2.2rem;color:var(--gold);margin:.2rem 0 .35rem}
+.pd{color:var(--mute);font-size:14px;margin-bottom:.9rem}
+.cta{display:inline-block;background:var(--red);color:#fff;font-family:Oswald,sans-serif;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.1rem;text-decoration:none}
+.site-foot{max-width:980px;margin:0 auto;padding:0 1.6rem 3rem;color:var(--mute);font-size:13px;line-height:1.7}
+.site-foot a{color:var(--gold);text-decoration:none}
+.site-foot a:hover{text-decoration:underline}
+.site-foot p+p{margin-top:.35rem}
+@media(max-width:800px){
+  .hero,.stage,.bug,.score,.screen,.site-foot{max-width:100%}
+  .hero{padding:0}
+  .bug{flex-direction:column;width:100%;min-width:0}
+  .bug-l{flex:none;width:100%;padding:1.2rem 0}
+  .bug-l img{width:min(72vw,280px)}
+  .bug-m{min-width:0;padding:1rem 1.05rem 1.15rem}
+  .bug-m h1{font-size:clamp(2.05rem,10.5vw,3.2rem)}
+  .bug-m h1 span{display:block}
+  .bug-m .hook,.bug-m p{max-width:none}
+  .score{min-width:0}
+  .sc{min-width:0;padding:.8rem .45rem}
+  .sc b{font-size:clamp(1.2rem,6.2vw,2.1rem)}
+  .sc span{font-size:10px;letter-spacing:.1em}
+  .stage{padding:1.1rem 1rem 3.5rem}
+  .weeks{grid-template-columns:repeat(3,1fr);gap:6px}
+  .wk{padding:.7rem .55rem}
+  .wk-p{font-size:1.15rem}
+  .points,.price-grid{grid-template-columns:1fr}
+  .chart-box{height:240px}
+  .screen-head{flex-wrap:wrap;gap:.35rem}
+  .site-foot{padding:0 1rem 2.5rem}
+}
+
+</style>
+</head>
+<body>
+
+
+<section class="hero">
+  <div class="bug">
+    <div class="bug-l"><img src="logo-goalpost.png" alt="EdgeScout NFL"></div>
+    <div class="bug-m">
+      <h1>This season <span data-u="28.6314"></span></h1>
+      <p class="hook">High strike rate, consistently profitable edges in the NFL.</p>
+      <ul class="lede-pts">
+        <li><span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>Email at 9pm the night before</li>
+        <li><span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>25–30 bets a week</li>
+        <li><span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>Regular season and playoffs</li>
+      </ul>
+    </div>
+  </div>
+  <div class="score">
+    <div class="sc"><span>Profit</span><b data-u="28.6314"></b></div>
+    <div class="sc"><span>ROI</span><b>14.8%</b></div>
+    <div class="sc"><span>Strike</span><b>59.3%</b></div>
+  </div>
+</section>
+<div class="stage">
+  
+<div class="stakes">
+  <span class="stakes-l">Your unit</span>
+  <button type="button" data-stake="10">£10</button>
+  <button type="button" data-stake="25" class="is-on">£25</button>
+  <button type="button" data-stake="50">£50</button>
+</div>
+
+  <div class="screen">
+    <div class="screen-head">
+      <h2>Running profit · Weeks 1–7</h2>
+      <a class="results-link" href="https://docs.google.com/spreadsheets/d/1FG5SqMbxkYlbGitjPC2H-GtoU3OGS18bx89SlOBdtvw/edit?gid=1188154855#gid=1188154855" target="_blank" rel="noopener">Full results</a>
+    </div>
+    <div class="chart-box"><canvas id="eq"></canvas></div>
+  </div>
+  <div class="weeks"><div class="wk"><span class="wk-n">Week 1</span><span class="wk-p" data-u="4.709"></span></div>
+<div class="wk"><span class="wk-n">Week 2</span><span class="wk-p" data-u="5.886"></span></div>
+<div class="wk"><span class="wk-n">Week 3</span><span class="wk-p" data-u="3.875"></span></div>
+<div class="wk"><span class="wk-n">Week 4</span><span class="wk-p" data-u="5.8714"></span></div>
+<div class="wk"><span class="wk-n">Week 5</span><span class="wk-p" data-u="2.51"></span></div>
+<div class="wk"><span class="wk-n">Week 6</span><span class="wk-p" data-u="8.91"></span></div>
+<div class="wk"><span class="wk-n">Week 7</span><span class="wk-p" data-u="-3.13"></span></div></div>
+  
+<section class="points">
+  <div>
+    <span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>
+    <div>
+      <h3>One email the night before</h3>
+      <p>Plenty of time to get bets on. Wednesday, Saturday and Sunday 9pm.</p>
+    </div>
+  </div>
+  <div>
+    <span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>
+    <div>
+      <h3>Prices widely available</h3>
+      <p>Easy to get on — bets are laid at a very wide variety of UK, Irish, US and European firms.</p>
+    </div>
+  </div>
+  <div>
+    <span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>
+    <div>
+      <h3>25+ bets per week</h3>
+      <p>Simple staking, minimum prices included, in an easy-to-use spreadsheet.</p>
+    </div>
+  </div>
+</section>
+<section class="how">
+  <h2>How it works</h2>
+  <ol>
+    <li>The card lands in your inbox at 9pm the evening before.</li>
+    <li>Mostly a flat unit, with the odd two-unit play and a minimum price.</li>
+    <li>Put them on. We log the results.</li>
+  </ol>
+</section>
+
+  
+<section class="prices" id="price">
+  <h2>Pricing</h2>
+  <div class="price-grid">
+    <div class="price-card feat">
+      <div class="pt">Limited trial</div>
+      <div class="pn">£7</div>
+      <div class="pd">This week’s card. Limited time.</div>
+      <a class="cta" href="https://buy.stripe.com/fZuaEQ0bF9gf0m34NzdIA08" target="_blank" rel="noopener">Get this week’s card</a>
+    </div>
+    <div class="price-card">
+      <div class="pt">Monthly</div>
+      <div class="pn">£37</div>
+      <div class="pd">Billed monthly. Cancel any time.</div>
+      <a class="cta" href="https://buy.stripe.com/6oU28kf6z2RR9WD7ZLdIA0a" target="_blank" rel="noopener">Subscribe</a>
+    </div>
+    <div class="price-card">
+      <div class="pt">Season pass</div>
+      <div class="pn">£97</div>
+      <div class="pd">The rest of the regular season and the playoffs.</div>
+      <a class="cta" href="https://buy.stripe.com/28EdR2e2veAzgl1gwhdIA09" target="_blank" rel="noopener">Get the season</a>
+    </div>
+  </div>
+</section>
+
+  
+<section class="faq" id="faq">
+  <h2>FAQ</h2>
+  <details>
+    <summary>What types of bets are offered?</summary>
+    <p>We focus on main line player props — receiving yards, receptions, and some rushing yards and passing touchdowns.</p>
+  </details>
+  <details>
+    <summary>Does this cover the playoffs?</summary>
+    <p>Yes. You get the regular season and the playoffs.</p>
+  </details>
+  <details>
+    <summary>How are the bets sent out?</summary>
+    <p>You’ll get an email on Wednesday, Saturday and Sunday evenings at 9pm (the day before the games.)</p>
+  </details>
+  <details>
+    <summary>How do you stake the bets?</summary>
+    <p>We mostly flat stake with occasional two-unit bets. But we give a minimum price, so you are welcome to try other strategies — some of our users use fractional Kelly staking which also works well.</p>
+  </details>
+  <details>
+    <summary>What size bank do you recommend?</summary>
+    <p>As we’re dealing with short odds bets and a high strike rate, a large bank is not required, although Sundays will require lots of bets to be on at once. We recommend a 50-unit bank.</p>
+  </details>
+  <details>
+    <summary>Will I be able to get the bets on?</summary>
+    <p>Yes, plenty of books have backable prices available. Some firms will be missing certain players, but there are almost always multiple options for each selection at good prices. BoyleSports, Paddy Power, Sky Bet and Betfair Sportsbook always have the full list available, while Betfred, Bet365 and William Hill are also good options, and plenty of others carry them as well. The bets are all main lines so prices typically don’t differ too much between firms. You shouldn’t need more than one or two books to be able to get every bet on.</p>
+  </details>
+  <details>
+    <summary>I’m from the US. Will I be able to get these on?</summary>
+    <p>Yes. Again, these are main lines, so most US sportsbooks as well as other markets like Kalshi should provide them. We’ve had a couple of US-based people betting these since we started trialling them, and they’ve been able to get on without any problems.</p>
+  </details>
+  <details>
+    <summary>What about shops?</summary>
+    <p>Paddy Power, William Hill, BoyleSports and Betfred all offer the bets in shops.</p>
+  </details>
+  <details>
+    <summary>Can I use these in multiples?</summary>
+    <p>Yes, definitely — it’s up to your own level of risk tolerance. A popular strategy is to always put on an accumulator of the four or five highest probability selections each Sunday. For bet builders in the same game, picks can often be positively or negatively correlated, and the difference will vary from book to book, so we would avoid those.</p>
+  </details>
+  <details>
+    <summary>What about taking higher totals than the advised bets?</summary>
+    <p>We don’t recommend this. Our model is calibrated for main line prices rather than tail outcomes. While we have had more than a few players easily beat their line on both overs and unders, it’s not what we’re modelling or recording to. If you want to try and gain more edge for a bigger risk, just back some multiples.</p>
+  </details>
+</section>
+
+</div>
+
+<footer class="site-foot">
+  <p><a href="mailto:edgescout@edgescout.co.uk">edgescout@edgescout.co.uk</a></p>
+  <p>18+ only. Please gamble responsibly. <a href="https://www.begambleaware.org" target="_blank" rel="noopener">BeGambleAware.org</a></p>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+const NFL = {"as_of":"2026-10-26","through":"Week 7","bets":190,"won":112,"lost":77,"void":1,"staked":193.0,"profit":28.6314,"roi":0.14834922279792745,"strike":0.5925925925925926,"weekly":[{"week":1,"label":"Week 1","bets":33,"won":18,"lost":15,"void":0,"profit":4.709,"roi":0.1427,"cum":4.709},{"week":2,"label":"Week 2","bets":17,"won":12,"lost":5,"void":0,"profit":5.886,"roi":0.3462,"cum":10.595},{"week":3,"label":"Week 3","bets":23,"won":13,"lost":9,"void":1,"profit":3.875,"roi":0.1761,"cum":14.47},{"week":4,"label":"Week 4","bets":39,"won":23,"lost":16,"void":0,"profit":5.8714,"roi":0.1505,"cum":20.3414},{"week":5,"label":"Week 5","bets":26,"won":15,"lost":11,"void":0,"profit":2.51,"roi":0.0965,"cum":22.8514},{"week":6,"label":"Week 6","bets":26,"won":18,"lost":8,"void":0,"profit":8.91,"roi":0.3427,"cum":31.7614},{"week":7,"label":"Week 7","bets":26,"won":13,"lost":13,"void":0,"profit":-3.13,"roi":-0.1043,"cum":28.6314}],"stakes":[10,25,50],"default_stake":25};
+
+let stake = NFL.default_stake;
+let chart;
+
+function gbp(units){
+  const n = Math.round(units * stake);
+  const sign = n < 0 ? '-' : '+';
+  return sign + '£' + Math.abs(n).toLocaleString('en-GB');
+}
+function cashSeries(){
+  return NFL.weekly.map(r => Math.round(r.cum * stake));
+}
+function applyStake(){
+  document.querySelectorAll('[data-u]').forEach(el => {
+    el.textContent = gbp(parseFloat(el.dataset.u));
+  });
+  document.querySelectorAll('[data-stake]').forEach(b => {
+    b.classList.toggle('is-on', Number(b.dataset.stake) === stake);
+  });
+  if (chart) {
+    chart.data.datasets[0].data = cashSeries();
+    chart.update();
+  }
+}
+function drawEquity(id, color, fill, tick, grid, tension){
+  chart = new Chart(document.getElementById(id), {
+    type: 'line',
+    data: {
+      labels: NFL.weekly.map(r => r.label),
+      datasets: [{
+        data: cashSeries(),
+        borderColor: color,
+        backgroundColor: fill,
+        fill: true,
+        tension: tension ?? 0.25,
+        pointRadius: 5,
+        pointHoverRadius: 7,
+        pointBackgroundColor: color,
+        borderWidth: 3,
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            title: items => items[0].label,
+            label: item => 'Running P/L  ' + gbp(item.parsed.y / stake)
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: { color: tick, font: { size: 12 } },
+          grid: { display: false },
+          border: { display: false }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: tick,
+            font: { size: 12 },
+            callback: v => (v>=0?'+':'') + '£' + Math.abs(v).toLocaleString('en-GB')
+          },
+          grid: { color: grid, drawBorder: false },
+          border: { display: false }
+        }
+      }
+    }
+  });
+  document.querySelectorAll('[data-stake]').forEach(b => {
+    b.addEventListener('click', () => { stake = Number(b.dataset.stake); applyStake(); });
+  });
+  applyStake();
+}
+
+drawEquity('eq','#f2c14e','rgba(242,193,78,.18)','#9aabc4','rgba(26,51,92,.7)',0.25);
+</script>
+</body>
+</html>
