@@ -38,7 +38,7 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
 .results-link{color:var(--gold);font-size:13px;text-decoration:none}
 .results-link:hover{text-decoration:underline}
 .chart-box{height:340px}
-.weeks{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
+.weeks{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
 .wk{background:var(--panel);padding:.85rem .9rem;border-left:3px solid var(--gold)}
 .wk-n{display:block;font-size:11px;color:var(--mute);letter-spacing:.1em;text-transform:uppercase}
 .wk-p{font-family:Oswald,sans-serif;font-size:1.3rem}
@@ -102,7 +102,7 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
   <div class="bug">
     <div class="bug-l"><img src="logo-goalpost.png" alt="EdgeScout NFL"></div>
     <div class="bug-m">
-      <h1>This season <span data-u="28.6314"></span></h1>
+      <h1>This season <span data-u="40.4614"></span></h1>
       <p class="hook">High strike rate, consistently profitable edges in the NFL.</p>
       <ul class="lede-pts">
         <li><span class="pt-ico" aria-hidden="true"><img src="football.png" alt=""></span>Email at 9pm the night before</li>
@@ -112,9 +112,9 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
     </div>
   </div>
   <div class="score">
-    <div class="sc"><span>Profit</span><b data-u="28.6314"></b></div>
-    <div class="sc"><span>ROI</span><b>14.8%</b></div>
-    <div class="sc"><span>Strike</span><b>59.3%</b></div>
+    <div class="sc"><span>Profit</span><b data-u="40.4614"></b></div>
+    <div class="sc"><span>ROI</span><b>17.1%</b></div>
+    <div class="sc"><span>Strike</span><b>59.6%</b></div>
   </div>
 </section>
 <div class="stage">
@@ -128,7 +128,7 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
 
   <div class="screen">
     <div class="screen-head">
-      <h2>Running profit · Weeks 1–7</h2>
+      <h2>Running profit · Weeks 1–8</h2>
       <a class="results-link" href="https://docs.google.com/spreadsheets/d/1FG5SqMbxkYlbGitjPC2H-GtoU3OGS18bx89SlOBdtvw/edit?gid=1188154855#gid=1188154855" target="_blank" rel="noopener">Full results</a>
     </div>
     <div class="chart-box"><canvas id="eq"></canvas></div>
@@ -139,7 +139,8 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
 <div class="wk"><span class="wk-n">Week 4</span><span class="wk-p" data-u="5.8714"></span></div>
 <div class="wk"><span class="wk-n">Week 5</span><span class="wk-p" data-u="2.51"></span></div>
 <div class="wk"><span class="wk-n">Week 6</span><span class="wk-p" data-u="8.91"></span></div>
-<div class="wk"><span class="wk-n">Week 7</span><span class="wk-p" data-u="-3.13"></span></div></div>
+<div class="wk"><span class="wk-n">Week 7</span><span class="wk-p" data-u="-3.13"></span></div>
+<div class="wk"><span class="wk-n">Week 8</span><span class="wk-p" data-u="11.83"></span></div></div>
   
 <section class="points">
   <div>
@@ -253,7 +254,7 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
-const NFL = {"as_of":"2026-10-26","through":"Week 7","bets":190,"won":112,"lost":77,"void":1,"staked":193.0,"profit":28.6314,"roi":0.14834922279792745,"strike":0.5925925925925926,"weekly":[{"week":1,"label":"Week 1","bets":33,"won":18,"lost":15,"void":0,"profit":4.709,"roi":0.1427,"cum":4.709},{"week":2,"label":"Week 2","bets":17,"won":12,"lost":5,"void":0,"profit":5.886,"roi":0.3462,"cum":10.595},{"week":3,"label":"Week 3","bets":23,"won":13,"lost":9,"void":1,"profit":3.875,"roi":0.1761,"cum":14.47},{"week":4,"label":"Week 4","bets":39,"won":23,"lost":16,"void":0,"profit":5.8714,"roi":0.1505,"cum":20.3414},{"week":5,"label":"Week 5","bets":26,"won":15,"lost":11,"void":0,"profit":2.51,"roi":0.0965,"cum":22.8514},{"week":6,"label":"Week 6","bets":26,"won":18,"lost":8,"void":0,"profit":8.91,"roi":0.3427,"cum":31.7614},{"week":7,"label":"Week 7","bets":26,"won":13,"lost":13,"void":0,"profit":-3.13,"roi":-0.1043,"cum":28.6314}],"stakes":[10,25,50],"default_stake":25};
+const NFL = {"as_of":"2026-11-02","through":"Week 8","bets":229,"won":136,"lost":92,"void":1,"staked":236.0,"profit":40.4614,"roi":0.1714466101694915,"strike":0.5964912280701754,"weekly":[{"week":1,"label":"Week 1","bets":33,"won":18,"lost":15,"void":0,"profit":4.709,"roi":0.1427,"cum":4.709},{"week":2,"label":"Week 2","bets":17,"won":12,"lost":5,"void":0,"profit":5.886,"roi":0.3462,"cum":10.595},{"week":3,"label":"Week 3","bets":23,"won":13,"lost":9,"void":1,"profit":3.875,"roi":0.1761,"cum":14.47},{"week":4,"label":"Week 4","bets":39,"won":23,"lost":16,"void":0,"profit":5.8714,"roi":0.1505,"cum":20.3414},{"week":5,"label":"Week 5","bets":26,"won":15,"lost":11,"void":0,"profit":2.51,"roi":0.0965,"cum":22.8514},{"week":6,"label":"Week 6","bets":26,"won":18,"lost":8,"void":0,"profit":8.91,"roi":0.3427,"cum":31.7614},{"week":7,"label":"Week 7","bets":26,"won":13,"lost":13,"void":0,"profit":-3.13,"roi":-0.1043,"cum":28.6314},{"week":8,"label":"Week 8","bets":39,"won":24,"lost":15,"void":0,"profit":11.83,"roi":0.2751,"cum":40.4614}],"stakes":[10,25,50],"default_stake":25};
 
 let stake = NFL.default_stake;
 let chart;
