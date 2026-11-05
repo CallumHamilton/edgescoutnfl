@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<script async src="https://cdn.promotekit.com/pk.js" data-promotekit="8b0de79d-abfe-4d18-827e-08ad70d10fee"></script>
 <style>
 
 :root{--navy:#071427;--panel:#0c1c38;--red:#e31837;--gold:#f2c14e;--ice:#f4f7fb;--mute:#9aabc4}
@@ -182,19 +183,19 @@ body{background:var(--navy);color:var(--ice);font-family:Inter,system-ui,sans-se
       <div class="pt">Limited trial</div>
       <div class="pn">£7</div>
       <div class="pd">This week’s card. Limited time.</div>
-      <a class="cta" href="https://buy.stripe.com/fZuaEQ0bF9gf0m34NzdIA08" target="_blank" rel="noopener">Get this week’s card</a>
+      <a class="cta" href="https://buy.stripe.com/fZuaEQ0bF9gf0m34NzdIA08" data-plan="trial">Get this week’s card</a>
     </div>
     <div class="price-card">
       <div class="pt">Monthly</div>
       <div class="pn">£37</div>
       <div class="pd">Billed monthly. Cancel any time.</div>
-      <a class="cta" href="https://buy.stripe.com/6oU28kf6z2RR9WD7ZLdIA0a" target="_blank" rel="noopener">Subscribe</a>
+      <a class="cta" href="https://buy.stripe.com/6oU28kf6z2RR9WD7ZLdIA0a" data-plan="monthly">Subscribe</a>
     </div>
     <div class="price-card">
       <div class="pt">Season pass</div>
       <div class="pn">£97</div>
       <div class="pd">The rest of the regular season and the playoffs.</div>
-      <a class="cta" href="https://buy.stripe.com/28EdR2e2veAzgl1gwhdIA09" target="_blank" rel="noopener">Get the season</a>
+      <a class="cta" href="https://buy.stripe.com/28EdR2e2veAzgl1gwhdIA09" data-plan="season">Get the season</a>
     </div>
   </div>
 </section>
@@ -335,6 +336,47 @@ function drawEquity(id, color, fill, tick, grid, tension){
 }
 
 drawEquity('eq','#f2c14e','rgba(242,193,78,.18)','#9aabc4','rgba(26,51,92,.7)',0.25);
+
+(function(){
+  const ENDPOINT = 'https://edgescout.onrender.com/nfl/checkout';
+  function referral(){
+    return (window.promotekit_referral || '').toString();
+  }
+  function fallback(href){
+    const ref = referral();
+    if (!ref) return href;
+    try {
+      const u = new URL(href, window.location.href);
+      u.searchParams.set('client_reference_id', ref);
+      return u.toString();
+    } catch (err) {
+      return href;
+    }
+  }
+  document.querySelectorAll('a.cta[data-plan]').forEach(a => {
+    a.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const plan = a.getAttribute('data-plan');
+      a.style.pointerEvents = 'none';
+      try {
+        const res = await fetch(ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            plan,
+            promotekit_referral: referral()
+          })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.url) {
+          window.location.href = data.url;
+          return;
+        }
+      } catch (err) {}
+      window.location.href = fallback(a.getAttribute('href'));
+    });
+  });
+})();
 </script>
 </body>
 </html>
